@@ -58,7 +58,55 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  // play sound
+  function playSound(e){
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`div.key[data-key="${e.keyCode}"]`);
+    if (!audio) return; // stop function if not a usable audio key
+    console.log(key);
+    audio.currentTime = 0; // rewind sound to the start
+    audio.play(); 
+    key.classList.add('playing');
+  }
+  
+  // remove the transition animation on transition end
+  function removeTransition(e) {
+    if(e.propertyName !== 'transform') return; // skip if its not a transform
+    this.classList.remove('playing');
+  }
+  
+  const keys = document.querySelectorAll('.key');
+  
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  
+  window.addEventListener('keydown', playSound);
 
+  // window.addEventListener('keydown', function(e) {
+  //   const key = document.querySelector(`div.key[data-key="${e.keyCode}"]`);
+  //   key.classList.remove('playing');
+  // });
+
+  // var body = document.querySelector('body');
+  // var keys = document.querySelectorAll('audio');
+  // var keyCodes = [];
+
+  // for( var i = 0; i < keys.length; i++) {
+  //   keyCodes.push(keys[i].getAttribute('data-key'));
+  // }
+
+
+  // console.log("KeyCodes: ", keyCodes);
+  // body.onkeydown = function(e){
+  //   if (!e.metaKey) {
+  //     e.preventDefault();
+  //   }
+  //   if (keyCodes.indexOf(e.keyCode.toString()) !== -1) {
+  //     console.log("Event: ", e);
+  //   }
+  //   // if (keyCodes.indexOf(e.keyCode.toString() !== -1)) {
+  //   //   console.log("Event: ", e);
+  //   // }
+  // }
 </script>
 
 
