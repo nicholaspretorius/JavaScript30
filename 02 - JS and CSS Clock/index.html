@@ -62,13 +62,53 @@
       background:black;
       position: absolute;
       top:50%;
+      transform-origin: 100%; /* sets hand to rotate from the end of the hand instead of the middle */
+      transform: rotate(90deg);
+      transition: all 0.5s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
 
   </style>
 
   <script>
+    const hourHand = document.querySelector('.hour-hand');
+    const minHand = document.querySelector('.min-hand');
+    const secondHand = document.querySelector('.second-hand');
 
+    function getDegrees(time) {
+        return ((time / 60) * 360) + 90;
+    }
 
+    function rotateHand(element, degrees) {
+        element.style.transform = `rotate(${degrees}deg)`;
+    }
+
+    function setDate() {
+        const now = new Date();
+
+        // get hours, mins, seconds
+        const hours = now.getHours();
+        const mins = now.getMinutes();
+        const seconds = now.getSeconds();
+        
+        // calculate degrees for clock hands
+        const hourDeg = getDegrees(hours);
+        const minDeg = getDegrees(mins);
+        const secDeg = getDegrees(seconds);
+
+        // rotate hands
+        rotateHand(hourHand, hourDeg);
+        rotateHand(minHand, minDeg);
+        rotateHand(secondHand, secDeg);
+        
+        console.log(`${hourDeg}:${minDeg}:${Math.round(secDeg)}`);
+        // secondHand.style.transform = `rotate(${Math.round(secDeg)}deg)`;
+        // minHand.style.transform = `rotate(${minDeg}deg)`;
+        // hourHand.style.transform = `rotate(${hourDeg}deg)`;
+        //console.log(seconds);
+    }
+
+    setInterval(setDate, 1000);
   </script>
 </body>
 </html>
