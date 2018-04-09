@@ -53,13 +53,13 @@
                     <span class="population">${numberWithCommas(city.population)}</span>
                 </li>
             `
-        }).join('');
+        }).join(''); // join is to flatten the entire array into a string
 
         suggestions.innerHTML = html;
     }
 
-    searchBox.addEventListener('change', displayMatches);
-    searchBox.addEventListener('keyup', displayMatches);
+    searchBox.addEventListener('change', displayMatches); // listen for events when tabbing away or entering
+    searchBox.addEventListener('keyup', displayMatches); // listen on every keyup
       
 </script>
   </body>
