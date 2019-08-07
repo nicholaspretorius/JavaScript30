@@ -138,6 +138,25 @@
       // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
       // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
+      const links = Array.from(document.querySelectorAll(".mw-category-group li a"));
+
+      const de = links.map(link => link.textContent).filter(street => street.includes("de"));
+
+      console.log("Streets containing 'de': ", de);
+
+      // const des = [];
+
+      // const myArray = Array.from(links);
+      // const anotherArray = [...links];
+
+      // console.log("My array: ", typeof myArray, " Another array: ", typeof anotherArray);
+
+      // links.forEach(item => {
+      //   if (item.textContent.indexOf(" de ") > 0) {
+      //     des.push(item.textContent);
+      //   }
+      // });
+      // console.log(des);
       // 7. sort Exercise
       // Sort the people alphabetically by last name
 
@@ -161,6 +180,16 @@
         "car",
         "truck"
       ];
+
+      // sort data array
+
+      console.log(
+        data.sort((a, b) => {
+          return a < b ? -1 : 1;
+        })
+      );
+
+      // iterate over data array
     </script>
   </body>
 </html>
